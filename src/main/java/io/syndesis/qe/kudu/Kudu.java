@@ -1,4 +1,4 @@
-package hello;
+package io.syndesis.qe.kudu;
 
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Schema;
@@ -27,7 +27,7 @@ public class Kudu {
 
 	public Kudu() {
 		this.client = new KuduClient
-				.KuduClientBuilder("localhost:7051")
+				.KuduClientBuilder("syndesis-kudu:7051")
 				.defaultOperationTimeoutMs(20000)
 				.defaultSocketReadTimeoutMs(20000)
 				.build();

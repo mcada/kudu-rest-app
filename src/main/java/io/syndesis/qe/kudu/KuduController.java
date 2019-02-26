@@ -1,4 +1,4 @@
-package hello;
+package io.syndesis.qe.kudu;
 
 import org.apache.kudu.client.KuduException;
 
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/kudu")
+@RequestMapping("/kudu/table")
 public class KuduController {
 	@Autowired
 	Kudu kudu;
@@ -25,7 +25,7 @@ public class KuduController {
 		}
 	}
 
-	@RequestMapping("/table/create")
+	@RequestMapping("/create")
 	public String createTable() {
 		try {
 			kudu.createTable();
@@ -36,7 +36,7 @@ public class KuduController {
 		return "Table created";
 	}
 
-	@RequestMapping("/table/delete")
+	@RequestMapping("/delete")
 	public String deleteTable() {
 		try {
 			kudu.deleteTable();
@@ -46,7 +46,7 @@ public class KuduController {
 		return "Table deleted";
 	}
 
-	@RequestMapping("/table/validate")
+	@RequestMapping("/validate")
 	public String checkTableContent() {
 		try {
 			if (kudu.scanTableAndCheckResults()) {
