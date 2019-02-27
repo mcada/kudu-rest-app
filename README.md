@@ -39,3 +39,9 @@ Then find the name of the pod that runs this quickstart, and output the logs fro
     oc logs <name of pod>
 
 You can also use the [fabric8 developer console](http://fabric8.io/guide/console.html) to manage the running pods, and view logs and much more.
+
+### Save image into local docker
+
+```
+mvn clean package fabric8:build -Dfabric8.mode=kubernetes -DskipTests
+```
