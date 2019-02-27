@@ -108,6 +108,7 @@ public class Kudu {
 	}
 
 	public boolean scanTableAndCheckResults() throws KuduException {
+		System.out.println("Scanning table..." + tableName);
 		KuduTable table = client.openTable(tableName);
 		Schema schema = table.getSchema();
 
@@ -129,9 +130,11 @@ public class Kudu {
 		// Check the correct number of values and null values are returned, and
 		// that the default value was set for the new column on each row.
 		// Note: scanning a hash-partitioned table will not return results in primary key order.
+		int resultsFound = 0;
 		while (scanner.hasMoreRows()) {
 			RowResultIterator results = scanner.nextRows();
 			while (results.hasNext()) {
+				resultsFound++;
 				RowResult result = results.next();
 				System.out.println(result.toStringLongFormat());
 
@@ -142,6 +145,6 @@ public class Kudu {
 			}
 		}
 
-		return true;
+		return resultsFound != 0;
 	}
 }
